@@ -2,9 +2,13 @@ import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { FaGithub, FaGoogle } from "react-icons/fa";
 import { AuthContext } from "../../contexts/AuthProvider";
+import { GithubAuthProvider, GoogleAuthProvider } from "firebase/auth";
 
 const Login = () => {
-  const { login } = useContext(AuthContext);
+  const { login, googleLogin, githubLogin } = useContext(AuthContext);
+
+  const googleProvider = new GoogleAuthProvider();
+  const gitHubProvider = new GithubAuthProvider();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -18,6 +22,24 @@ const Login = () => {
         const user = result.user;
         console.log(user);
         form.reset();
+      })
+      .catch((error) => console.error(error));
+  };
+
+  const handleGoogleLogin = () => {
+    googleLogin(googleProvider)
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+      })
+      .catch((error) => console.error(error));
+  };
+
+  const handleGitHubLogin = () => {
+    githubLogin(gitHubProvider)
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
       })
       .catch((error) => console.error(error));
   };
@@ -89,6 +111,7 @@ const Login = () => {
           </div>
           <div className="my-6 space-y-2">
             <button
+              onClick={handleGoogleLogin}
               aria-label="Login with Google"
               type="button"
               className="flex items-center justify-center w-full p-2 space-x-4 border rounded-md focus:ring-2 focus:ring-offset-1 dark:border-gray-400 focus:ring-violet-400"
@@ -97,6 +120,7 @@ const Login = () => {
               <p>Login with Google</p>
             </button>
             <button
+              onClick={handleGitHubLogin}
               type="button"
               className="flex items-center justify-center w-full p-4 space-x-4 border rounded-md focus:ring-2 focus:ring-offset-1 dark:border-gray-400 focus:ring-violet-400"
             >

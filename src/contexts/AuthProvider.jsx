@@ -28,6 +28,9 @@ const AuthProvider = ({ children }) => {
   const googleLogin = (provider) => {
     return signInWithPopup(auth, provider);
   };
+  const githubLogin = (provider) => {
+    return signInWithPopup(auth, provider);
+  };
 
   const emailVerification = () => {
     return sendEmailVerification(auth.currentUser);
@@ -52,7 +55,14 @@ const AuthProvider = ({ children }) => {
     return () => unsubscribe();
   }, []);
 
-  const userInfo = { user, createUser, updateUserProfile, login };
+  const userInfo = {
+    user,
+    createUser,
+    updateUserProfile,
+    login,
+    googleLogin,
+    githubLogin,
+  };
   return (
     <AuthContext.Provider value={userInfo}>{children}</AuthContext.Provider>
   );

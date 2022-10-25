@@ -76,7 +76,7 @@ const Header = () => {
           <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
             <div
               title={user?.displayName}
-              className="w-10 rounded-full tooltip tooltip-bottom"
+              className="w-10 rounded-full"
               data-tip="hello"
             >
               {user?.photoURL ? (
