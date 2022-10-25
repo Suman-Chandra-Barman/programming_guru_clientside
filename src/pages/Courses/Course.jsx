@@ -12,7 +12,7 @@ const Course = ({ course }) => {
         <div className="card-body">
           <h2 className="card-title">{title}</h2>
           <div className="card-actions mt-10">
-            <button className="btn bg-sky-500 hover:bg-sky-700 w-full">
+            <button className="btn bg-sky-500 hover:bg-sky-700 w-full border-0">
               View Details
             </button>
           </div>

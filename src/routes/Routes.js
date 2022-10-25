@@ -8,7 +8,7 @@ import ErrorPage from "../pages/ErrorPage/ErrorPage";
 import Home from "../pages/Home/Home";
 import Login from "../pages/Login/Login";
 import Register from "../pages/Register/Register";
-import SideBar from "../pages/Other/SideBar";
+import CourseDetails from "../pages/Courses/CourseDetails";
 
 const routes = createBrowserRouter([
   {
@@ -31,7 +31,7 @@ const routes = createBrowserRouter([
       },
       {
         path: "/courses/:id",
-        element: <SideBar />,
+        element: <CourseDetails />,
       },
       {
         path: "/questions",

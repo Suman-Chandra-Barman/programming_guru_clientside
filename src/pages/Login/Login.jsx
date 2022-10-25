@@ -48,7 +48,7 @@ const Login = () => {
     <div className="bg-gray-50 py-10">
       <div className="flex flex-col  items-center min-h-screen pt-6 sm:justify-center sm:pt-0">
         <div>
-          <h3 className="text-4xl font-bold text-purple-600">
+          <h3 className="text-4xl font-bold text-gray-700">
             Login Your Account
           </h3>
         </div>
@@ -87,11 +87,11 @@ const Login = () => {
                 />
               </div>
             </div>
-            <Link to="#" className="text-xs text-purple-600 hover:underline">
+            <Link to="#" className="text-xs text-sky-500 hover:underline">
               Forget Password?
             </Link>
             <div className="flex items-center mt-4">
-              <button className="w-full px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-purple-700 rounded-md hover:bg-purple-600 focus:outline-none focus:bg-purple-600">
+              <button className="w-full px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-sky-500 rounded-md hover:bg-sky-700 focus:outline-none focus:bg-sky-500">
                 Login
               </button>
             </div>
@@ -99,7 +99,7 @@ const Login = () => {
           <div className="mt-4 text-grey-600">
             Don't have an account?{" "}
             <span>
-              <Link className="text-purple-600 hover:underline" to="/register">
+              <Link className="text-sky-500 hover:underline" to="/register">
                 Register
               </Link>
             </span>
@@ -114,7 +114,7 @@ const Login = () => {
               onClick={handleGoogleLogin}
               aria-label="Login with Google"
               type="button"
-              className="flex items-center justify-center w-full p-2 space-x-4 border rounded-md focus:ring-2 focus:ring-offset-1 dark:border-gray-400 focus:ring-violet-400"
+              className="flex items-center justify-center w-full p-2 space-x-4 border  hover:bg-gray-700 hover:text-white rounded-md focus:ring-2 focus:ring-offset-1 dark:border-gray-400 focus:ring-violet-400"
             >
               <FaGoogle className="text-2xl" />
               <p>Login with Google</p>
@@ -122,7 +122,7 @@ const Login = () => {
             <button
               onClick={handleGitHubLogin}
               type="button"
-              className="flex items-center justify-center w-full p-4 space-x-4 border rounded-md focus:ring-2 focus:ring-offset-1 dark:border-gray-400 focus:ring-violet-400"
+              className="flex items-center justify-center w-full p-2 space-x-4 border hover:bg-gray-700 hover:text-white rounded-md focus:ring-2 focus:ring-offset-1 dark:border-gray-400 focus:ring-violet-400"
             >
               <FaGithub className="text-2xl" />
               <p>Login with GitHub</p>

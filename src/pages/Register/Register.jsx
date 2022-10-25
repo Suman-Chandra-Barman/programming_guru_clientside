@@ -44,7 +44,7 @@ const Register = () => {
     <div className="bg-gray-50 py-10">
       <div className="flex flex-col  items-center min-h-screen pt-6 sm:justify-center sm:pt-0">
         <div>
-          <h3 className="text-4xl font-bold text-purple-600">
+          <h3 className="text-4xl font-bold text-gray-700">
             Register Your Account
           </h3>
         </div>
@@ -141,7 +141,7 @@ const Register = () => {
             <div className=" text-red-400">{error}</div>
 
             <div className="flex items-center mt-4">
-              <button className="w-full px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-purple-700 rounded-md hover:bg-purple-600 focus:outline-none focus:bg-purple-600">
+              <button className="w-full px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-sky-500 rounded-md hover:bg-sky-700 focus:outline-none focus:bg-sky-500">
                 Register
               </button>
             </div>
@@ -149,7 +149,7 @@ const Register = () => {
           <div className="mt-4 text-grey-600">
             Already have an account?{" "}
             <span>
-              <Link className="text-purple-600 hover:underline" to="/login">
+              <Link className="text-sky-500 hover:underline" to="/login">
                 Log in
               </Link>
             </span>

@@ -76,12 +76,12 @@ const Header = () => {
               <Link to="/questions">FAQ</Link>
             </li>
             {user?.uid ? (
-              <Link
+              <button
                 onClick={handleLogout}
-                className="btn btn-sm bg-red-500 border-0"
+                className="btn btn-sm bg-white border-0 text-gray-700 hover:bg-gray-700 hover:text-white"
               >
                 Logout
-              </Link>
+              </button>
             ) : (
               <>
                 <li>
