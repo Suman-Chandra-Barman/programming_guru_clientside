@@ -1,5 +1,4 @@
 import React, { useContext, useState } from "react";
-import { FaGithub, FaGoogle } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthProvider";
 
@@ -49,7 +48,7 @@ const Register = () => {
             Register Your Account
           </h3>
         </div>
-        <div className="w-full px-6 py-4 mt-6 overflow-hidden bg-white shadow-md sm:max-w-lg sm:rounded-lg">
+        <div className="w-full px-6 py-10 mt-6 overflow-hidden bg-white shadow-md sm:max-w-lg sm:rounded-lg">
           <form onSubmit={handleSubmit}>
             <div>
               <label
@@ -154,28 +153,6 @@ const Register = () => {
                 Log in
               </Link>
             </span>
-          </div>
-          <div className="flex items-center w-full my-4">
-            <hr className="w-full" />
-            <p className="px-3 ">OR</p>
-            <hr className="w-full" />
-          </div>
-          <div className="my-6 space-y-2">
-            <button
-              aria-label="Login with Google"
-              type="button"
-              className="flex items-center justify-center w-full p-2 space-x-4 border rounded-md focus:ring-2 focus:ring-offset-1 dark:border-gray-400 focus:ring-violet-400"
-            >
-              <FaGoogle className="text-2xl" />
-              <p>Login with Google</p>
-            </button>
-            <button
-              type="button"
-              className="flex items-center justify-center w-full p-4 space-x-4 border rounded-md focus:ring-2 focus:ring-offset-1 dark:border-gray-400 focus:ring-violet-400"
-            >
-              <FaGithub className="text-2xl" />
-              <p>Login with GitHub</p>
-            </button>
           </div>
         </div>
       </div>
