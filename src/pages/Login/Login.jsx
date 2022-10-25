@@ -1,8 +1,27 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { FaGithub, FaGoogle } from "react-icons/fa";
+import { AuthContext } from "../../contexts/AuthProvider";
 
 const Login = () => {
+  const { login } = useContext(AuthContext);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const email = form.email.value;
+    const password = form.password.value;
+    console.log(email, password);
+
+    login(email, password)
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+        form.reset();
+      })
+      .catch((error) => console.error(error));
+  };
+
   return (
     <div className="bg-gray-50 py-10">
       <div className="flex flex-col  items-center min-h-screen pt-6 sm:justify-center sm:pt-0">
@@ -12,7 +31,7 @@ const Login = () => {
           </h3>
         </div>
         <div className="w-full px-6 py-4 mt-6 overflow-hidden bg-white shadow-md sm:max-w-lg sm:rounded-lg">
-          <form>
+          <form onSubmit={handleSubmit}>
             <div className="mt-4">
               <label
                 htmlFor="email"
@@ -40,6 +59,7 @@ const Login = () => {
                 <input
                   type="password"
                   name="password"
+                  autoComplete="true"
                   className="block p-2 border border-1 w-full mt-1 border-gray-300 rounded-md shadow-sm"
                   placeholder="Enter password"
                 />

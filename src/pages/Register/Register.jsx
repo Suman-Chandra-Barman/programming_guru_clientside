@@ -1,8 +1,46 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import { FaGithub, FaGoogle } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../contexts/AuthProvider";
 
 const Register = () => {
+  const { createUser, updateUserProfile } = useContext(AuthContext);
+  const [error, setError] = useState("");
+  console.log(error);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const name = form.name.value;
+    const photoURL = form.photoURL.value;
+    const email = form.email.value;
+    const password = form.password.value;
+    const confirmPassword = form.password_confirmation.value;
+
+    console.log(name, photoURL, email, password, confirmPassword);
+
+    if (password === confirmPassword) {
+      createUser(email, password)
+        .then((result) => {
+          const user = result.user;
+          console.log(user);
+          setError("");
+          form.reset();
+
+          updateUserProfileInfo(email, photoURL);
+        })
+        .catch((error) => console.error(error));
+    } else {
+      setError("Password doesn't match. Please confirm password");
+    }
+  };
+
+  const updateUserProfileInfo = (email, photoURL) => {
+    updateUserProfile(email, photoURL)
+      .then(() => {})
+      .catch((error) => console.error(error));
+  };
+
   return (
     <div className="bg-gray-50 py-10">
       <div className="flex flex-col  items-center min-h-screen pt-6 sm:justify-center sm:pt-0">
@@ -12,7 +50,7 @@ const Register = () => {
           </h3>
         </div>
         <div className="w-full px-6 py-4 mt-6 overflow-hidden bg-white shadow-md sm:max-w-lg sm:rounded-lg">
-          <form>
+          <form onSubmit={handleSubmit}>
             <div>
               <label
                 htmlFor="name"
@@ -25,7 +63,8 @@ const Register = () => {
                   type="text"
                   name="name"
                   className="block p-2 w-full mt-1 border-gray-300 rounded-md border border-1 shadow-sm"
-                  placeholder="Enter name"
+                  placeholder="Enter full name"
+                  required
                 />
               </div>
             </div>
@@ -42,6 +81,7 @@ const Register = () => {
                   name="photoURL"
                   className="block p-2 w-full mt-1 border-gray-300 rounded-md border border-1 shadow-sm"
                   placeholder="Enter photoURL"
+                  required
                 />
               </div>
             </div>
@@ -58,6 +98,7 @@ const Register = () => {
                   name="email"
                   className="block p-2 border border-1 w-full mt-1 border-gray-300 rounded-md shadow-sm"
                   placeholder="Enter email"
+                  required
                 />
               </div>
             </div>
@@ -73,7 +114,9 @@ const Register = () => {
                   type="password"
                   name="password"
                   className="block p-2 border border-1 w-full mt-1 border-gray-300 rounded-md shadow-sm"
+                  autoComplete="true"
                   placeholder="Enter password"
+                  required
                 />
               </div>
             </div>
@@ -88,14 +131,16 @@ const Register = () => {
                 <input
                   type="password"
                   name="password_confirmation"
+                  autoComplete="true"
                   className="block p-2 border border-1 w-full mt-1 border-gray-300 rounded-md shadow-sm"
                   placeholder="Enter confirm password"
+                  required
                 />
               </div>
             </div>
-            <Link to="#" className="text-xs text-purple-600 hover:underline">
-              Forget Password?
-            </Link>
+
+            <div className=" text-red-400">{error}</div>
+
             <div className="flex items-center mt-4">
               <button className="w-full px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-purple-700 rounded-md hover:bg-purple-600 focus:outline-none focus:bg-purple-600">
                 Register
