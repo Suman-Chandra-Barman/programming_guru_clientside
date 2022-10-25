@@ -4,8 +4,14 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthProvider";
 
 const Header = () => {
-  const { user } = useContext(AuthContext);
+  const { user, logout } = useContext(AuthContext);
   console.log(user?.photoURL);
+
+  const handleLogout = () => {
+    logout()
+      .then(() => {})
+      .catch((error) => console.error(error));
+  };
 
   return (
     <div className="container mx-auto bg-base-100">
@@ -49,12 +55,17 @@ const Header = () => {
               </li>
             </ul>
           </div>
-          <Link className="btn btn-ghost normal-case text-xl">
+          <Link to="/" className="btn btn-ghost normal-case text-xl">
+            <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+              <div className="w-10 rounded-full">
+                <img src="favicon.png" alt="" />
+              </div>
+            </label>
             Programming Guru
           </Link>
         </div>
-        <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal p-0">
+        <div className="navbar-end hidden lg:flex">
+          <ul className="menu menu-horizontal p-0 items-center">
             <li>
               <Link to="/courses">Courses</Link>
             </li>
@@ -62,14 +73,25 @@ const Header = () => {
               <Link to="/blog">Blog</Link>
             </li>
             <li>
-              <Link to="/register">Register</Link>
-            </li>
-            <li>
-              <Link to="/login">Login</Link>
-            </li>
-            <li>
               <Link to="/questions">FAQ</Link>
             </li>
+            {user?.uid ? (
+              <Link
+                onClick={handleLogout}
+                className="btn btn-sm bg-red-500 border-0"
+              >
+                Logout
+              </Link>
+            ) : (
+              <>
+                <li>
+                  <Link to="/register">Register</Link>
+                </li>
+                <li>
+                  <Link to="/login">Login</Link>
+                </li>
+              </>
+            )}
           </ul>
         </div>
         <div className="navbar-end">
@@ -86,7 +108,6 @@ const Header = () => {
               )}
             </div>
           </label>
-          {/* <Link className="btn bg-red-500 border-0">Logout</Link> */}
         </div>
       </div>
     </div>
