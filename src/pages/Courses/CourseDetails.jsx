@@ -25,9 +25,11 @@ const CourseDetails = () => {
           <p>{description}</p>
           <p>${price}</p>
           <div className="card-actions justify-end">
-            <button className="btn hover:bg-sky-500 w-full border-0">
-              <Link to="/checkout">Get premium access</Link>
-            </button>
+            <Link to="/checkout">
+              <button className="btn hover:bg-sky-500 border-0">
+                Get premium access
+              </button>
+            </Link>
           </div>
         </div>
       </div>
