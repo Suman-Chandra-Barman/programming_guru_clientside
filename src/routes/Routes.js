@@ -9,6 +9,8 @@ import Home from "../pages/Home/Home";
 import Login from "../pages/Login/Login";
 import Register from "../pages/Register/Register";
 import CourseDetails from "../pages/Courses/CourseDetails";
+import Checkout from "../pages/Checkout/Checkout";
+import PrivetRoute from "./PrivetRoute";
 
 const routes = createBrowserRouter([
   {
@@ -27,13 +29,16 @@ const routes = createBrowserRouter([
       {
         path: "/courses",
         element: <Courses />,
-        loader: () => fetch("http://localhost:5000/courses"),
+        loader: () =>
+          fetch("https://programming-guru-server.vercel.app/courses"),
       },
       {
         path: "/courses/:id",
         element: <CourseDetails />,
         loader: ({ params }) =>
-          fetch(`http://localhost:3000/courses/${params.id}`),
+          fetch(
+            `https://programming-guru-server.vercel.app/courses/${params.id}`
+          ),
       },
       {
         path: "/questions",
@@ -46,6 +51,14 @@ const routes = createBrowserRouter([
       {
         path: "/register",
         element: <Register />,
+      },
+      {
+        path: "/checkout",
+        element: (
+          <PrivetRoute>
+            <Checkout />
+          </PrivetRoute>
+        ),
       },
     ],
   },

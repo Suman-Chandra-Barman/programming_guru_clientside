@@ -1,11 +1,12 @@
 import React from "react";
 import { FaFileDownload } from "react-icons/fa";
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 
 const CourseDetails = () => {
   const course = useLoaderData();
+
   console.log(course);
-  const { name, title, image, rating, description, price } = course;
+  const { name, title, image, description, price } = course;
   return (
     <div className="my-10">
       <div className="flex justify-center my-5 gap-5">
@@ -25,7 +26,7 @@ const CourseDetails = () => {
           <p>${price}</p>
           <div className="card-actions justify-end">
             <button className="btn hover:bg-sky-500 w-full border-0">
-              Get premium access
+              <Link to="/checkout">Get premium access</Link>
             </button>
           </div>
         </div>
