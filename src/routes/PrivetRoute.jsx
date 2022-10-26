@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { Navigate, useLocation } from "react-router-dom";
+import { RingLoader } from "react-spinners";
 import { AuthContext } from "../contexts/AuthProvider";
 
 const PrivetRoute = ({ children }) => {
@@ -7,7 +8,15 @@ const PrivetRoute = ({ children }) => {
   const location = useLocation();
 
   if (loading) {
-    return <div>Loading...</div>;
+    return (
+      <div className="text-center top-20">
+        <RingLoader
+          size={150}
+          aria-label="Loading Spinner"
+          data-testid="loader"
+        />
+      </div>
+    );
   }
 
   if (user && user?.uid) {
