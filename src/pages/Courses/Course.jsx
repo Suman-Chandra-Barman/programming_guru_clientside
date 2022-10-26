@@ -7,7 +7,7 @@ const Course = ({ course }) => {
     <Link to={`/courses/${id}`}>
       <div className="card card-compact bg-base-100 shadow-xl">
         <figure>
-          <img src={image} alt="" className="" />
+          <img src={image} alt="" className="h-40 w-full" />
         </figure>
         <div className="card-body">
           <h2 className="card-title">{title}</h2>

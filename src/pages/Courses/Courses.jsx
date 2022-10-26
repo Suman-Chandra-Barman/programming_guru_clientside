@@ -6,15 +6,15 @@ const Courses = () => {
   console.log(courses);
   return (
     <div className="grid grid-cols-4 gap-5 container mx-auto my-10">
-      <aside className="menu bg-base-100 p-2 rounded-box shadow-md">
+      <aside className="menu bg-base-100 p-2 text-white shadow-md">
         {courses.map((course) => (
-          <li key={course.id}>
+          <li key={course.id} className="bg-gray-800 mt-3 rounded-md">
             <Link to={`/courses/${course.id}`}>{course.name}</Link>
           </li>
         ))}
       </aside>
       <section className="col-span-3">
-        <div className="grid grid-cols-3 gap-3 shadow-md">
+        <div className="grid grid-cols-3 gap-3">
           {courses.map((course) => (
             <Course key={course.id} course={course} />
           ))}

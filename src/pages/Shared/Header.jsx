@@ -58,7 +58,7 @@ const Header = () => {
           <Link to="/" className="btn btn-ghost normal-case text-xl">
             <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
               <div className="w-10 rounded-full">
-                <img src="logo.png" alt="" />
+                <img src="logo.png" alt="Logo" />
               </div>
             </label>
             Programming Guru

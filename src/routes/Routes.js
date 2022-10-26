@@ -5,7 +5,6 @@ import Blog from "../pages/Blog/Blog";
 import Courses from "../pages/Courses/Courses";
 import FAQ from "../pages/FAQ/FAQ";
 import ErrorPage from "../pages/ErrorPage/ErrorPage";
-import Home from "../pages/Home/Home";
 import Login from "../pages/Login/Login";
 import Register from "../pages/Register/Register";
 import CourseDetails from "../pages/Courses/CourseDetails";
@@ -20,7 +19,9 @@ const routes = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <Home />,
+        element: <Courses />,
+        loader: () =>
+          fetch("https://programming-guru-server.vercel.app/courses"),
       },
       {
         path: "/blog",
@@ -53,12 +54,16 @@ const routes = createBrowserRouter([
         element: <Register />,
       },
       {
-        path: "/checkout",
+        path: "/checkout/:id",
         element: (
           <PrivetRoute>
             <Checkout />
           </PrivetRoute>
         ),
+        loader: ({ params }) =>
+          fetch(
+            `https://programming-guru-server.vercel.app/courses/${params.id}`
+          ),
       },
     ],
   },
