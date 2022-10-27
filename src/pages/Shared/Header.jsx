@@ -45,9 +45,6 @@ const Header = () => {
                 <Link to="/blog">Blog</Link>
               </li>
               <li>
-                <Link to="/checkout">My Classes</Link>
-              </li>
-              <li>
                 <Link to="/register">Register</Link>
               </li>
               <li>
@@ -71,9 +68,6 @@ const Header = () => {
           <ul className="menu menu-horizontal p-0 items-center">
             <li>
               <Link to="/courses">Courses</Link>
-            </li>
-            <li>
-              <Link to="/checkout">My Courses</Link>
             </li>
             <li>
               <Link to="/blog">Blog</Link>
@@ -104,7 +98,7 @@ const Header = () => {
           <div>
             <button
               onClick={() => setLight(!isLight)}
-              className="btn btn-sm border-0 bg-gray-800 text-white"
+              className="btn btn-sm border-0 bg-gray-800 text-white mr-3"
             >
               {isLight ? "Dark" : "Light"}
             </button>

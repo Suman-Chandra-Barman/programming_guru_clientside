@@ -58,7 +58,7 @@ const CourseDetails = () => {
             <span className="ml-2">{`(Students ${rating.count})`}</span>
           </p>
           <div className="card-actions justify-center mt-10 mb-5">
-            <Link onClick={() => handlePreAccess(name)} to="/checkout">
+            <Link to={`/checkout/${id}`}>
               <button className="btn bg-sky-500 hover:bg-sky-700 border-0">
                 Get premium access
               </button>
