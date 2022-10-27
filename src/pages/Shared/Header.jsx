@@ -49,7 +49,7 @@ const Header = () => {
               {user?.uid ? (
                 <button
                   onClick={handleLogout}
-                  className="btn btn-sm bg-gray-200 border-0 hover:bg-gray-500"
+                  className="btn btn-sm bg-gray-200 border-0 hover:bg-gray-500 text-black"
                 >
                   Logout
                 </button>
@@ -105,18 +105,16 @@ const Header = () => {
           </ul>
         </div>
         <div className="navbar-end">
-          <div>
-            <div className="form-control">
-              <label
-                onClick={() => setLight(!light)}
-                className="label cursor-pointer "
-              >
-                <span className="label-text text-white mr-2 text-lg font-semibold">
-                  {light ? "Dark" : "Light"}
-                </span>
-                <input type="checkbox" className="toggle" />
-              </label>
-            </div>
+          <div className="form-control hidden md:block">
+            <label
+              onClick={() => setLight(!light)}
+              className="label cursor-pointer "
+            >
+              <span className="label-text text-white mr-2 text-lg font-semibold">
+                {light ? "Dark" : "Light"}
+              </span>
+              <input type="checkbox" className="toggle" />
+            </label>
           </div>
           {user?.uid && (
             <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
