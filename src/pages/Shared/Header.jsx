@@ -1,9 +1,10 @@
-import React, { useContext } from "react";
-import { FaUserCircle } from "react-icons/fa";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthProvider";
 
 const Header = () => {
+  const [isLight, setLight] = useState(true);
+
   const { user, logout } = useContext(AuthContext);
 
   const handleLogout = () => {
@@ -35,7 +36,7 @@ const Header = () => {
             </label>
             <ul
               tabIndex={0}
-              className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
+              className="menu menu-compact dropdown-content mt-3 p-2 shadow rounded-box w-52  bg-sky-500 text-white"
             >
               <li>
                 <Link to="/courses">Courses</Link>
@@ -100,19 +101,25 @@ const Header = () => {
           </ul>
         </div>
         <div className="navbar-end">
-          <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-            <div
-              title={user?.displayName}
-              className="w-10 rounded-full"
-              data-tip="hello"
+          <div>
+            <button
+              onClick={() => setLight(!isLight)}
+              className="btn btn-sm border-0 bg-gray-800 text-white"
             >
-              {user?.photoURL ? (
+              {isLight ? "Dark" : "Light"}
+            </button>
+          </div>
+          {user?.uid && (
+            <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+              <div
+                title={user?.displayName}
+                className="w-10 rounded-full"
+                data-tip="hello"
+              >
                 <img src={user.photoURL} alt="" />
-              ) : (
-                <FaUserCircle className="w-10 h-10" />
-              )}
-            </div>
-          </label>
+              </div>
+            </label>
+          )}
         </div>
       </div>
     </div>

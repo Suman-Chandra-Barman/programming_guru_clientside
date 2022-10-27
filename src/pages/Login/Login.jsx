@@ -1,10 +1,12 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FaGithub, FaGoogle } from "react-icons/fa";
 import { AuthContext } from "../../contexts/AuthProvider";
 import { GithubAuthProvider, GoogleAuthProvider } from "firebase/auth";
 
 const Login = () => {
+  const [error, setError] = useState("");
+
   const { login, googleLogin, githubLogin } = useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
@@ -25,16 +27,21 @@ const Login = () => {
       .then((result) => {
         const user = result.user;
         console.log(user);
+        setError("");
         form.reset();
         navigate(from, { replace: true });
       })
-      .catch((error) => console.error(error));
+      .catch((error) => {
+        console.error(error);
+        setError("Email or Password not match. Please try again");
+      });
   };
 
   const handleGoogleLogin = () => {
     googleLogin(googleProvider)
       .then((result) => {
         const user = result.user;
+        setError("");
         navigate(from, { replace: true });
         console.log(user);
       })
@@ -45,6 +52,7 @@ const Login = () => {
     githubLogin(gitHubProvider)
       .then((result) => {
         const user = result.user;
+        setError("");
         navigate(from, { replace: true });
         console.log(user);
       })
@@ -97,6 +105,7 @@ const Login = () => {
             <Link to="#" className="text-xs text-sky-500 hover:underline">
               Forget Password?
             </Link>
+            <div className=" text-red-400">{error}</div>
             <div className="flex items-center mt-4">
               <button className="w-full px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-sky-500 rounded-md hover:bg-sky-700 focus:outline-none focus:bg-sky-500">
                 Login
