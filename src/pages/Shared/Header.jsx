@@ -45,14 +45,25 @@ const Header = () => {
                 <Link to="/blog">Blog</Link>
               </li>
               <li>
-                <Link to="/register">Register</Link>
-              </li>
-              <li>
-                <Link to="/login">Login</Link>
-              </li>
-              <li>
                 <Link to="/blog">FAQ</Link>
               </li>
+              {user?.uid ? (
+                <button
+                  onClick={handleLogout}
+                  className="btn btn-sm bg-white border-0 text-gray-700 hover:bg-gray-700 hover:text-white"
+                >
+                  Logout
+                </button>
+              ) : (
+                <>
+                  <li>
+                    <Link to="/register">Register</Link>
+                  </li>
+                  <li>
+                    <Link to="/login">Login</Link>
+                  </li>
+                </>
+              )}
             </ul>
           </div>
           <Link to="/" className="btn btn-ghost normal-case text-xl">
@@ -98,7 +109,7 @@ const Header = () => {
           <div>
             <button
               onClick={() => setLight(!isLight)}
-              className="btn btn-sm border-0 bg-gray-800 text-white mr-3"
+              className="hidden md:block btn btn-sm border-0 bg-gray-800 text-white mr-3"
             >
               {isLight ? "Dark" : "Light"}
             </button>

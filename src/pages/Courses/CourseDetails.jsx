@@ -1,32 +1,23 @@
-import React, { useContext } from "react";
+import React from "react";
 import { FaFileDownload } from "react-icons/fa";
 import { Link, useLoaderData } from "react-router-dom";
 import Pdf from "react-to-pdf";
-import { AuthContext } from "../../contexts/AuthProvider";
 
 const ref = React.createRef();
 
 const CourseDetails = () => {
-  const { preAccess, setPreAccess } = useContext(AuthContext);
   const course = useLoaderData();
 
-  const handlePreAccess = (name) => {
-    console.log(preAccess);
-    const newAccess = [...preAccess, name];
-    setPreAccess(newAccess);
-  };
-  console.log(preAccess);
-
-  const { id, name, image, title, description, price, skills, rating } = course;
+  const { id, image, title, description, price, skills, rating } = course;
   return (
     <div className="my-10 container mx-auto lg:w-4/6">
-      <div className="flex justify-center my-5 gap-5 items-center">
-        <h2 className="text-3xl font-bold">{title}</h2>
+      <div className="md:flex justify-center my-5 gap-5 items-center text-center">
+        <h2 className="text-3xl font-bold text-center mb-5">{title}</h2>
         <Pdf targetRef={ref} filename="course-details.pdf">
           {({ toPdf }) => (
             <button
               onClick={toPdf}
-              className="btn bg-sky-500 border-0 hover:bg-sky-700"
+              className="btn bg-sky-500 border-0 hover:bg-sky-700 mb-5"
             >
               <FaFileDownload className="text-xl mr-2" />
               Download PDF
@@ -39,15 +30,15 @@ const CourseDetails = () => {
         className="card card-compact bg-base-100 shadow-xl mx-auto"
       >
         <figure>
-          <img src={`../${image}`} alt="" className="w-full h-[350px]" />
+          <img src={`../${image}`} alt="" className="w-full lg:h-[350px]" />
         </figure>
         <div className="card-body">
           <h3 className="text-2xl font-bold">About This Course </h3>
           <p className="text-lg">{description}</p>
           <h3 className="text-2xl mt-5 font-bold">Skills You’ll Gain</h3>
           <p className="text-lg">
-            {skills.map((s) => (
-              <li key={s.id}>{s}</li>
+            {skills.map((s, idx) => (
+              <li key={idx}>{s}</li>
             ))}
           </p>
           <p className="text-xl mt-5">
