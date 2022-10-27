@@ -5,9 +5,9 @@ const Courses = () => {
   const courses = useLoaderData();
   return (
     <div className="md:grid grid-cols-4 gap-5 container mx-auto my-10">
-      <aside className="menu bg-base-100 p-2 text-white shadow-md">
+      <aside className="menu bg-base-100 p-2 shadow-md rounded-2xl">
         {courses.map((course) => (
-          <li key={course.id} className="bg-gray-800 mt-3 rounded-md">
+          <li key={course.id} className="bg-gray-200 mt-3 rounded-md">
             <Link to={`/courses/${course.id}`}>{course.name}</Link>
           </li>
         ))}

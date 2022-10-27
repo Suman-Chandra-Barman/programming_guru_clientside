@@ -3,8 +3,7 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthProvider";
 
 const Header = () => {
-  const [isLight, setLight] = useState(true);
-
+  const [light, setLight] = useState(true);
   const { user, logout } = useContext(AuthContext);
 
   const handleLogout = () => {
@@ -50,7 +49,7 @@ const Header = () => {
               {user?.uid ? (
                 <button
                   onClick={handleLogout}
-                  className="btn btn-sm bg-white border-0 text-gray-700 hover:bg-gray-700 hover:text-white"
+                  className="btn btn-sm bg-gray-200 border-0 hover:bg-gray-500"
                 >
                   Logout
                 </button>
@@ -89,7 +88,7 @@ const Header = () => {
             {user?.uid ? (
               <button
                 onClick={handleLogout}
-                className="btn btn-sm bg-white border-0 text-gray-700 hover:bg-gray-700 hover:text-white"
+                className="btn btn-sm bg-gray-200 border-0 text-black hover:bg-gray-400"
               >
                 Logout
               </button>
@@ -107,12 +106,17 @@ const Header = () => {
         </div>
         <div className="navbar-end">
           <div>
-            <button
-              onClick={() => setLight(!isLight)}
-              className="hidden md:block btn btn-sm border-0 bg-gray-800 text-white mr-3"
-            >
-              {isLight ? "Dark" : "Light"}
-            </button>
+            <div className="form-control">
+              <label
+                onClick={() => setLight(!light)}
+                className="label cursor-pointer "
+              >
+                <span className="label-text text-white mr-2 text-lg font-semibold">
+                  {light ? "Dark" : "Light"}
+                </span>
+                <input type="checkbox" className="toggle" />
+              </label>
+            </div>
           </div>
           {user?.uid && (
             <label tabIndex={0} className="btn btn-ghost btn-circle avatar">

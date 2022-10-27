@@ -1,11 +1,13 @@
 import React, { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import toast from "react-hot-toast";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthProvider";
 
 const Register = () => {
-  const { createUser, updateUserProfile } = useContext(AuthContext);
+  const { createUser, updateUserProfile, emailVerification } =
+    useContext(AuthContext);
   const [error, setError] = useState("");
-  console.log(error);
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -22,15 +24,18 @@ const Register = () => {
       createUser(email, password)
         .then((result) => {
           const user = result.user;
+          toast.success("Congratulation, Registration successful");
           console.log(user);
           setError("");
           form.reset();
+          navigate("/courses");
+          handleEmailVerification();
 
           updateUserProfileInfo(email, photoURL);
         })
         .catch((error) => console.error(error));
     } else {
-      setError("Password doesn't match. Please confirm password");
+      setError("Password did not match. Please try again");
     }
   };
 
@@ -40,6 +45,13 @@ const Register = () => {
       .catch((error) => console.error(error));
   };
 
+  const handleEmailVerification = () => {
+    emailVerification().then(() => {
+      toast.success(
+        "Verification email send! Please check your email and verify."
+      );
+    });
+  };
   return (
     <div className="bg-gray-50 py-10">
       <div className="flex flex-col  items-center min-h-screen pt-6 sm:justify-center sm:pt-0">

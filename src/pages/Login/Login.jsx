@@ -3,11 +3,14 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FaGithub, FaGoogle } from "react-icons/fa";
 import { AuthContext } from "../../contexts/AuthProvider";
 import { GithubAuthProvider, GoogleAuthProvider } from "firebase/auth";
+import toast from "react-hot-toast";
 
 const Login = () => {
   const [error, setError] = useState("");
+  const [userEmail, setUserEmail] = useState("");
+  const { login, googleLogin, githubLogin, emailVerification, passwordReset } =
+    useContext(AuthContext);
 
-  const { login, googleLogin, githubLogin } = useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -27,13 +30,13 @@ const Login = () => {
       .then((result) => {
         const user = result.user;
         console.log(user);
+        toast.success("Login successful");
         setError("");
         form.reset();
         navigate(from, { replace: true });
       })
       .catch((error) => {
-        console.error(error);
-        setError("Email or Password not match. Please try again");
+        setError(error.message);
       });
   };
 
@@ -41,6 +44,7 @@ const Login = () => {
     googleLogin(googleProvider)
       .then((result) => {
         const user = result.user;
+        toast.success("Login successful");
         setError("");
         navigate(from, { replace: true });
         console.log(user);
@@ -52,11 +56,34 @@ const Login = () => {
     githubLogin(gitHubProvider)
       .then((result) => {
         const user = result.user;
+        handleEmailVerification();
+        toast.success("Login successful");
         setError("");
         navigate(from, { replace: true });
         console.log(user);
       })
       .catch((error) => console.error(error));
+  };
+
+  const handleEmailVerification = () => {
+    emailVerification().then(() => {
+      toast.success(
+        "Verification email send! Please check your email and verify."
+      );
+    });
+  };
+
+  console.log(userEmail);
+  const handlePasswordReset = () => {
+    passwordReset(userEmail)
+      .then(() => {
+        toast.success("Password reset email send! Please check your email");
+      })
+      .catch((error) => {
+        const errorMessage = error.message;
+        setError(errorMessage);
+        // ..
+      });
   };
 
   return (
@@ -80,6 +107,7 @@ const Login = () => {
                 <input
                   type="email"
                   name="email"
+                  onChange={(e) => setUserEmail(e.target.value)}
                   className="block p-2 border border-1 w-full mt-1 border-gray-300 rounded-md shadow-sm"
                   placeholder="Enter email"
                 />
@@ -102,7 +130,10 @@ const Login = () => {
                 />
               </div>
             </div>
-            <Link to="#" className="text-xs text-sky-500 hover:underline">
+            <Link
+              onClick={handlePasswordReset}
+              className="text-xs text-sky-500 hover:underline"
+            >
               Forget Password?
             </Link>
             <div className=" text-red-400">{error}</div>
