@@ -5,7 +5,6 @@ import { AuthContext } from "../../contexts/AuthProvider";
 
 const Header = () => {
   const { user, logout } = useContext(AuthContext);
-  console.log(user?.photoURL);
 
   const handleLogout = () => {
     logout()
@@ -45,6 +44,9 @@ const Header = () => {
                 <Link to="/blog">Blog</Link>
               </li>
               <li>
+                <Link to="/checkout">My Classes</Link>
+              </li>
+              <li>
                 <Link to="/register">Register</Link>
               </li>
               <li>
@@ -68,6 +70,9 @@ const Header = () => {
           <ul className="menu menu-horizontal p-0 items-center">
             <li>
               <Link to="/courses">Courses</Link>
+            </li>
+            <li>
+              <Link to="/checkout">My Courses</Link>
             </li>
             <li>
               <Link to="/blog">Blog</Link>

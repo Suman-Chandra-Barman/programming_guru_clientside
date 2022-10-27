@@ -54,16 +54,12 @@ const routes = createBrowserRouter([
         element: <Register />,
       },
       {
-        path: "/checkout/:id",
+        path: "/checkout",
         element: (
           <PrivetRoute>
             <Checkout />
           </PrivetRoute>
         ),
-        loader: ({ params }) =>
-          fetch(
-            `https://programming-guru-server.vercel.app/courses/${params.id}`
-          ),
       },
     ],
   },

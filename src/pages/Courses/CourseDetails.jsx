@@ -1,15 +1,23 @@
-import React from "react";
+import React, { useContext } from "react";
 import { FaFileDownload } from "react-icons/fa";
 import { Link, useLoaderData } from "react-router-dom";
 import Pdf from "react-to-pdf";
+import { AuthContext } from "../../contexts/AuthProvider";
 
 const ref = React.createRef();
 
 const CourseDetails = () => {
+  const { preAccess, setPreAccess } = useContext(AuthContext);
   const course = useLoaderData();
 
-  console.log(course);
-  const { id, image, title, description, price, skills, rating } = course;
+  const handlePreAccess = (name) => {
+    console.log(preAccess);
+    const newAccess = [...preAccess, name];
+    setPreAccess(newAccess);
+  };
+  console.log(preAccess);
+
+  const { id, name, image, title, description, price, skills, rating } = course;
   return (
     <div className="my-10 container mx-auto lg:w-4/6">
       <div className="flex justify-center my-5 gap-5 items-center">
@@ -50,7 +58,7 @@ const CourseDetails = () => {
             <span className="ml-2">{`(Students ${rating.count})`}</span>
           </p>
           <div className="card-actions justify-center mt-10 mb-5">
-            <Link to={`/checkout/${id}`}>
+            <Link onClick={() => handlePreAccess(name)} to="/checkout">
               <button className="btn bg-sky-500 hover:bg-sky-700 border-0">
                 Get premium access
               </button>
