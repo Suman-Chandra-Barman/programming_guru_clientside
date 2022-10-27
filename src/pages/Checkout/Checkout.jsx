@@ -9,11 +9,6 @@ const Checkout = () => {
   return (
     <div>
       <h3>Your Premium Courses</h3>
-      <ul>
-        {names.map((name) => (
-          <li>{name.name}</li>
-        ))}
-      </ul>
     </div>
   );
 };
